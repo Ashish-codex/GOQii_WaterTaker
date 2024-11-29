@@ -20,8 +20,7 @@ class DashboardViewModel:ObservableObject {
     
     init() {
         
-        print(Date.now)
-        
+        UNUserNotificationCenter.current().delegate = NotificationManager.shared
     }
     
     
@@ -38,6 +37,16 @@ class DashboardViewModel:ObservableObject {
     }
     
 
+    func getTime() -> String{
+        
+        let str1 = String(describing: Date.now).split(separator: " ")[1].split(separator: ":").first
+        let str2 = String(describing: Date.now).split(separator: " ")[1].split(separator: ":")[1]
+        
+        print(Date.now)
+        print("\(String(describing: str1 ?? "-")):\(String(describing: str2 ))")
+        
+        return "\(String(describing: str1 ?? "-")):\(String(describing: str2 ))"
+    }
     
     
     func getTotoalLiter(){
@@ -53,7 +62,18 @@ class DashboardViewModel:ObservableObject {
         if tempTotal <= 4.0{
 
             totalLiterWater = "\(String(format: "%.1f", tempTotal)) L"
+            
+            if tempTotal == 4.0{
+                NotificationManager.shared.notifyCompleteDailyTarget()
+            }
+            
+            
         }else{
+            
+            if tempTotal == 5.0{
+                NotificationManager.shared.notifyAfterDailyTarget()
+            }
+            
             totalLiterWater = "4.0 L+"
         }
         

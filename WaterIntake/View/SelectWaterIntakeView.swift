@@ -45,7 +45,7 @@ struct SelectWaterIntakeView: View {
                         data: ModelWaterIntake(
                             img: "icon_water_glass",
                             quantity: String(vm.totalGlassQuantity),
-                            time: "time",
+                            time: dashboardVM.getTime(),
                             unit: String(vm.totalGlassML),
                             type: .Glass))
                 }
@@ -55,7 +55,7 @@ struct SelectWaterIntakeView: View {
                         data: ModelWaterIntake(
                             img: "icon_water_bottle",
                             quantity: String(vm.totalBottleQuantity),
-                            time: "time",
+                            time: dashboardVM.getTime(),
                             unit: String(vm.totalBootleML),
                             type: .Bottle))
                 }

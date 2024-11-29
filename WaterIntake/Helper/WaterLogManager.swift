@@ -16,17 +16,16 @@ class WaterLogManager {
     func addWaterLog(quantity: String, unit: String) {
         let newLog = WaterLog(context: context)
         newLog.id = UUID()
-        newLog.date = Date()
+        newLog.time = Date()
         newLog.quantity = quantity
         newLog.unit = unit
         saveContext()
     }
     
-//    func fetchLogs(for date: Date) -> [WaterLog] {
-//        let fetchRequest: NSFetchRequest<WaterLog> = WaterLog.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "date >= %@ AND date < %@", date.startOfDay as NSDate, date.endOfDay as NSDate)
-//        return (try? context.fetch(fetchRequest)) ?? []
-//    }
+    func fetchLogs(for date: Date) -> [WaterLog] {
+        let fetchRequest: NSFetchRequest<WaterLog> = WaterLog.fetchRequest()
+        return (try? context.fetch(fetchRequest)) ?? []
+    }
     
     func updateLog(log: WaterLog, quantity: String, unit: String) {
         log.quantity = quantity
