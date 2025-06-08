@@ -11,7 +11,6 @@ import SwiftUI
 struct WaterIntakeApp: App {
     let persistenceController = PersistenceController.shared
 
-    
     var body: some Scene {
         WindowGroup {
             DashboardView()
